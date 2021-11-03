@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -12,36 +13,41 @@ void nextturn(char&);
 int main(){
     Mysetlocale();
     char turn;
-    int gridsize, z = 1;
-    while(z > 0){
-        z = menu(turn, gridsize);
+    int gridsize, tempA = 1, tempB;
+    while(tempA > 0){
+        tempA = menu(turn, gridsize);
     }
-    if (z < 0){ return z; }
+    if (tempA < 0){ return tempA; }
 
     //создаем игровое поле
-    if (gridsize == 1){
-        char grid[3][3]{ };
-    }
-    else if (gridsize == 2){
-        char grid[4][4]{ };
-    }
-    else if (gridsize == 3){
-        char grid[5][5]{ };
-    }
+    const int gsize = gridsize + 2;
+    char grid[gsize][gsize]{};
+    for (int i = 0; i < gsize; i++){
+            for (int j = 0; j < gsize; j++){
+                grid[i][j] = '■';
+            }
+        }
 
     //начало игры
     //не готово
     bool ingame = true;
     while(ingame){
         clear();
+        //вывод поля
         for (int i = 0; i < gridsize + 2; i++){
             for (int j = 0; j < gridsize + 2; j++){
-                cout << grid[i][j] << " ";
+                cout << grid[i][j];
             }
             cout << "\n";
         }
-        cout << "\nход игрока \"" << turn << "\"\n";
+        //ход игрока
+        cout << "\nход игрока \"" << turn << "\"\n"
+            << "введите корды: ";
+        cin >> tempA;
+        
 
+        //запрет бесконечного цикла
+        //потом норм выход сделать
         ingame = false;
     }
 
