@@ -5,15 +5,15 @@ using namespace std;
 
 void Mysetlocale();
 void clear();
-int menu(char&, int&, int&);
-int settings(char&, int&, int&);
+int menu(char&, int&);
+int settings(char&, int&);
 
 int main(){
     Mysetlocale();
     char turn;
-    int gridsize, color, z = 1;
+    int gridsize, z = 1;
     while(z > 0){
-        z = menu(turn, gridsize, color);
+        z = menu(turn, gridsize);
     }
     if (z < 0){ return z; }
 
@@ -31,7 +31,7 @@ void clear(){
 
 //главное меню
 //дописать правила
-int menu(char &fturn, int &gridsize, int &color){
+int menu(char &fturn, int &gridsize){
     cout << "1 - Новая игра\n"
         << "2 - Настройки\n"
         << "3 - Правила\n"
@@ -41,26 +41,23 @@ int menu(char &fturn, int &gridsize, int &color){
         case 1:
             return 0;
         case 2:
-            return settings(fturn, gridsize, color);
+            return settings(fturn, gridsize);
         case 3:
             cout << "press enter to continue...\n";
             cin.get();
-            return menu(fturn, gridsize, color);
+            return menu(fturn, gridsize);
         case 4:
             return -1;
     }
 }
 
 //настройки
-//потом
-int settings(char &fturn, int &gridsize, int &color){
+int settings(char &fturn, int &gridsize){
     cout << "1 - изменить размер поля\n"
         << "\tтекущий размер: " << gridsize
         << "2 - изменить первого игрока\n"
         << "\tпервый игрок: " << fturn
-        << "3 - изменить цвет интерфейса"
-        << "\tтекущий цвет: " << color
-        << "4 - выход\n:";
+        << "3 - выход\n:";
     int select; cin >> select;
     switch(select){
         case 1:
@@ -70,15 +67,14 @@ int settings(char &fturn, int &gridsize, int &color){
                 << "выберите размер поля:";
             cin >> gridsize;
             if (gridsize > 3 || gridsize < 0){ gridsize = 1; }
-            return settings(fturn, gridsize, color);
+            return settings(fturn, gridsize);
         case 2:
             cout << "выберите первого игрока(x, o): ";
             cin >> fturn;
             if (fturn != 'x' && fturn != 'o') { fturn = 'x'; }
-            return settings(fturn, gridsize, color);
+            return settings(fturn, gridsize);
         case 3:
-            
-            return settings(fturn, gridsize, color);
+            return menu(fturn, gridsize);
         default:
             cout << "invalid input...";
             return -1;
