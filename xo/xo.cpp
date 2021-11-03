@@ -132,7 +132,7 @@ void nextturn(char &turn){
 
 //проверка координат
 int setcord(int gsize){
-    cout << "введите x: ";
+    cout << "введите координату: ";
     int cord; cin >> cord;
     if (cord >= gsize || cord < 0){
         cout << "invalid input...";
