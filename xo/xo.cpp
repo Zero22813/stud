@@ -29,9 +29,20 @@ int main(){
         char grid[5][5]{ };
     }
 
+    //начало игры
+    //не готово
     bool ingame = true;
     while(ingame){
-        
+        clear();
+        for (int i = 0; i < gridsize + 2; i++){
+            for (int j = 0; j < gridsize + 2; j++){
+                cout << grid[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\nход игрока \"" << turn << "\"\n";
+
+        ingame = false;
     }
 
     return 0;
@@ -98,6 +109,7 @@ int settings(char &fturn, int &gridsize){
     }
 }
 
+//смена хода
 void nextturn(char &turn){
     if (turn == 'x') { turn = 'o'; }
     else { turn = 'x'; }
