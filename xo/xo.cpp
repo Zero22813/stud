@@ -9,6 +9,7 @@ void clear();
 int menu(char&, int&);
 int settings(char&, int&);
 void nextturn(char&);
+int setcord(int);
 
 int main(){
     Mysetlocale();
@@ -41,10 +42,12 @@ int main(){
             cout << "\n";
         }
         //ход игрока
-        cout << "\nход игрока \"" << turn << "\"\n"
-            << "введите корды: ";
-        cin >> tempA;
-        
+        cout << "\nход игрока \"" << turn << "\"\n";
+        tempA = setcord(gsize);
+        tempB = setcord(gsize);
+        if (grid[tempA][tempB] == '■'){
+            grid[tempA][tempB] = turn;
+        }
 
         //запрет бесконечного цикла
         //потом норм выход сделать
@@ -119,4 +122,15 @@ int settings(char &fturn, int &gridsize){
 void nextturn(char &turn){
     if (turn == 'x') { turn = 'o'; }
     else { turn = 'x'; }
+}
+
+//проверка координат
+int setcord(int gsize){
+    cout << "введите x: ";
+    int cord; cin >> cord;
+    if (cord >= gsize || cord < 0){
+        cout << "invalid input...";
+        return setcord(gsize);
+    }
+    else{ return cord; }
 }
