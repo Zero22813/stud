@@ -53,7 +53,8 @@ int main(){
             skipturn = true;
         }
 
-        if(!skipturn){ nextturn(turn); ingame = false; }
+        if(!skipturn){ nextturn(turn); }
+        else { ingame = false; }
 
         //запрет бесконечного цикла
         //потом норм выход сделать
