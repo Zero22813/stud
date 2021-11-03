@@ -7,6 +7,7 @@ void Mysetlocale();
 void clear();
 int menu(char&, int&);
 int settings(char&, int&);
+void nextturn(char&);
 
 int main(){
     Mysetlocale();
@@ -16,6 +17,22 @@ int main(){
         z = menu(turn, gridsize);
     }
     if (z < 0){ return z; }
+
+    //создаем игровое поле
+    if (gridsize == 1){
+        char grid[3][3]{ };
+    }
+    else if (gridsize == 2){
+        char grid[4][4]{ };
+    }
+    else if (gridsize == 3){
+        char grid[5][5]{ };
+    }
+
+    bool ingame = true;
+    while(ingame){
+        
+    }
 
     return 0;
 }
@@ -79,4 +96,9 @@ int settings(char &fturn, int &gridsize){
             cout << "invalid input...";
             return -1;
     }
+}
+
+void nextturn(char &turn){
+    if (turn == 'x') { turn = 'o'; }
+    else { turn = 'x'; }
 }
