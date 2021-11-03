@@ -31,7 +31,7 @@ int main(){
 
     //начало игры
     //не готово
-    bool ingame = true;
+    bool ingame = true, skipturn = false;
     while(ingame){
         clear();
         //вывод поля
@@ -48,10 +48,16 @@ int main(){
         if (grid[tempA][tempB] == '■'){
             grid[tempA][tempB] = turn;
         }
+        else{
+            cout << "invalid input...";
+            skipturn = true;
+        }
+
+        if(!skipturn){ nextturn(turn); ingame = false; }
 
         //запрет бесконечного цикла
         //потом норм выход сделать
-        ingame = false;
+        //ingame = false;
     }
 
     return 0;
