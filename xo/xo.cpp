@@ -13,8 +13,8 @@ int setcord(int);
 
 int main(){
     Mysetlocale();
-    char turn;
-    int gridsize, tempA = 1, tempB;
+    char turn = 'x';
+    int gridsize = 1, tempA = 1, tempB;
     while(tempA > 0){
         tempA = menu(turn, gridsize);
     }
@@ -25,7 +25,7 @@ int main(){
     char grid[gsize][gsize]{};
     for (int i = 0; i < gsize; i++){
             for (int j = 0; j < gsize; j++){
-                grid[i][j] = '■';
+                grid[i][j] = '.';
             }
         }
 
@@ -45,7 +45,7 @@ int main(){
         cout << "\nход игрока \"" << turn << "\"\n";
         tempA = setcord(gsize);
         tempB = setcord(gsize);
-        if (grid[tempA][tempB] == '■'){
+        if (grid[tempA][tempB] == '.'){
             grid[tempA][tempB] = turn;
         }
         else{
@@ -97,9 +97,9 @@ int menu(char &fturn, int &gridsize){
 //настройки
 int settings(char &fturn, int &gridsize){
     cout << "1 - изменить размер поля\n"
-        << "\tтекущий размер: " << gridsize
+        << "\tтекущий размер: " << gridsize << "\n"
         << "2 - изменить первого игрока\n"
-        << "\tпервый игрок: " << fturn
+        << "\tпервый игрок: " << fturn << "\n"
         << "3 - выход\n:";
     int select; cin >> select;
     switch(select){
