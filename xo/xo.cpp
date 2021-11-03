@@ -54,17 +54,31 @@ int menu(char &fturn, int &gridsize, int &color){
 //настройки
 //потом
 int settings(char &fturn, int &gridsize, int &color){
-    int select;
+    cout << "1 - изменить размер поля\n"
+        << "\tтекущий размер: " << gridsize
+        << "2 - изменить первого игрока\n"
+        << "\tпервый игрок: " << fturn
+        << "3 - изменить цвет интерфейса"
+        << "\tтекущий цвет: " << color
+        << "4 - выход\n:";
+    int select; cin >> select;
     switch(select){
         case 1:
-            gridsize = 1;
-            break;
+            cout << "1 - 3x3\n"
+                << "2 - 4x4\n"
+                << "3 - 5x5\n"
+                << "выберите размер поля:";
+            cin >> gridsize;
+            if (gridsize > 3 || gridsize < 0){ gridsize = 1; }
+            return settings(fturn, gridsize, color);
         case 2:
-            gridsize = 2;
-            break;
+            cout << "выберите первого игрока(x, o): ";
+            cin >> fturn;
+            if (fturn != 'x' && fturn != 'o') { fturn = 'x'; }
+            return settings(fturn, gridsize, color);
         case 3:
-            gridsize = 3;
-            break;
+            
+            return settings(fturn, gridsize, color);
         default:
             cout << "invalid input...";
             return -1;
