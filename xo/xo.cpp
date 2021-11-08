@@ -62,6 +62,10 @@ int main(){
                             cout << grid[x][y] << " win";
                             ingame = false;
                         }
+                        else if (grid[x][y] == grid[x+1][y+1] && grid[x][y] == grid[x-1][y-1]){
+                            cout << grid[x][y] << " win";
+                            ingame = false;
+                        }
                     }
                     else if (y != 0 && y != gsize-1){
                         if (grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1]){
@@ -155,7 +159,7 @@ void nextturn(char &turn){
 int setcord(int gsize){
     cout << "введите координату: ";
     int cord; cin >> cord;
-    if (cord >= gsize || cord < 0){
+    if (cord > gsize || cord < 0){
         cout << "invalid input...";
         return setcord(gsize) - 1;
     }
