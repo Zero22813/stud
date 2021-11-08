@@ -30,7 +30,6 @@ int main(){
         }
 
     //начало игры
-    //не готово
     bool ingame = true, skipturn = false;
     while(ingame){
         clear();
@@ -52,11 +51,15 @@ int main(){
             cout << "invalid input...";
             skipturn = true;
         }
-
+        //смена хода
         if(!skipturn){ nextturn(turn); }
-        //запрет бесконечного цикла
-        //потом норм выход сделать
-        else { ingame = false; }
+        //условия победы
+        for (int y = 0; y < gsize; y++){
+            for (int x = 0; x < gsize; x++){
+                if (y != 0 && y != gsize-1 && grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1]){ cout << grid[x][y] << " win"; ingame = false; }
+                else if (x != 0 && x != gsize-1 && grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x-1][y]){ cout << grid[x][y] << " win"; ingame = false; }
+            }
+        }
     }
 
     return 0;
@@ -139,3 +142,8 @@ int setcord(int gsize){
     }
     else{ return cord; }
 }
+
+/*
+if (y != 0 && y != gsize-1 &&grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1]){ cout << grid[x][y] << " win"; }
+else if (x != 0 && x != gsize-1 &&grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x-1][y]){ cout << grid[x][y] << " win"; }
+*/
