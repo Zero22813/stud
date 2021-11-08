@@ -57,7 +57,13 @@ int main(){
         for (int y = 0; y < gsize; y++){
             for (int x = 0; x < gsize; x++){
                 if (grid[x][y] != '.'){
-                    if (y != 0 && y != gsize-1){
+                    if (y != 0 && y != gsize-1 && x != 0 && x != gsize-1){
+                        if (grid[x][y] == grid[x-1][y+1] && grid[x][y] == grid[x+1][y-1]){
+                            cout << grid[x][y] << " win";
+                            ingame = false;
+                        }
+                    }
+                    else if (y != 0 && y != gsize-1){
                         if (grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1]){
                             cout << grid[x][y] << " win";
                             ingame = false;
