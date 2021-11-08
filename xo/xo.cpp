@@ -54,6 +54,7 @@ int main(){
         //смена хода
         if(!skipturn){ nextturn(turn); }
         //условия победы
+        //!!!!!привести в адекватный вид!!!!!
         for (int y = 0; y < gsize; y++){
             for (int x = 0; x < gsize; x++){
                 if (grid[x][y] != '.'){
@@ -63,6 +64,14 @@ int main(){
                             ingame = false;
                         }
                         else if (grid[x][y] == grid[x+1][y+1] && grid[x][y] == grid[x-1][y-1]){
+                            cout << grid[x][y] << " win";
+                            ingame = false;
+                        }
+                        else if (grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1]){
+                            cout << grid[x][y] << " win";
+                            ingame = false;
+                        }
+                        else if (grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x-1][y]){
                             cout << grid[x][y] << " win";
                             ingame = false;
                         }
