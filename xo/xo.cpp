@@ -54,13 +54,24 @@ int main(){
         //смена хода
         if(!skipturn){ nextturn(turn); }
         //условия победы
-        /*
         for (int y = 0; y < gsize; y++){
             for (int x = 0; x < gsize; x++){
-                if ((y != 0 && y != gsize-1) && (grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1])){ cout << grid[x][y] << " win"; ingame = false; }
-                else if ((x != 0 && x != gsize-1) && (grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x-1][y])){ cout << grid[x][y] << " win"; ingame = false; }
+                if (grid[x][y] != '.'){
+                    if (y != 0 && y != gsize-1){
+                        if (grid[x][y] == grid[x][y+1] && grid[x][y] == grid[x][y-1]){
+                            cout << grid[x][y] << " win";
+                            ingame = false;
+                        }
+                    }
+                    else if (x != 0 && x != gsize-1){
+                        if (grid[x][y] == grid[x+1][y] && grid[x][y] == grid[x-1][y]){
+                            cout << grid[x][y] << " win";
+                            ingame = false;
+                        }
+                    }
+                }
             }
-        }*/
+        }
         skipturn = false;
     }
 
@@ -140,9 +151,9 @@ int setcord(int gsize){
     int cord; cin >> cord;
     if (cord >= gsize || cord < 0){
         cout << "invalid input...";
-        return setcord(gsize);
+        return setcord(gsize) - 1;
     }
-    else{ return cord; }
+    else{ return cord - 1; }
 }
 
 /*
