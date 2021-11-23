@@ -70,6 +70,7 @@ char ansout(int);
 
 int main() {
 	//setlocale(0, "");
+	//system("chcp 65001");
 	system("chcp 1251");
 	resarr();
 	switch (menu())
