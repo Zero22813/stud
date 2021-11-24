@@ -7,9 +7,9 @@ int main(int argc, char const *argv[])
 {
 	setlocale(0, "");
 	string menu0, menu1, menu2;
-	menu0 = "1 - english\n2 - русский\n";
+	menu0 = "1 - english\n2 - СЂСѓСЃСЃРєРёР№\n";
     menu1 = "penicillin\nnecktie\ncapitalization\ncarriage\nplan\npython\nashes\nsynthesis\nsystem\nitemized\nancient\ntrolley\nimage\nrevolution\n";
-    menu2 = "пенициллин\nгалстук\nкапитализация\nкарета\nплан\nпитон\nпрах\nсинтез\nсистема\nдробный\nдревний\nдрезина\nобраз\nоборот\n";
+    menu2 = "РїРµРЅРёС†РёР»Р»РёРЅ\nРіР°Р»СЃС‚СѓРє\nРєР°РїРёС‚Р°Р»РёР·Р°С†РёСЏ\nРєР°СЂРµС‚Р°\nРїР»Р°РЅ\nРїРёС‚РѕРЅ\nРїСЂР°С…\nСЃРёРЅС‚РµР·\nСЃРёСЃС‚РµРјР°\nРґСЂРѕР±РЅС‹Р№\nРґСЂРµРІРЅРёР№\nРґСЂРµР·РёРЅР°\nРѕР±СЂР°Р·\nРѕР±РѕСЂРѕС‚\n";
 	int mode;
     cout << menu0 << ":"; cin >> mode;
     switch(mode){
@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
         cout << menu2;
         break;
     default:
-        cout << "Неверное значение";
+        cout << "РќРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ";
         break;
     }
 	return 0;
