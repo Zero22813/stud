@@ -72,6 +72,7 @@ char ansoutpp(int);
 
 int main() {
 	//setlocale(0, "");
+	//system("chcp 65001");
 	system("chcp 1251");
 	resarr();
 	switch (menu())
@@ -203,13 +204,14 @@ void game() {
 		cin >> select;
 		clear;
 
-		//Проверка ответа
+		//проверка использования подсказки 50х50
 		if (ppused == 0 && (select == "50x50" || select == "50х50") ) {
 			ppused++;
 		}
 		else if (ppused != 0 && (select == "50x50" || select == "50х50")) {
 			cout << "подсказка уже использована\n";
 		}
+		//Проверка ответа
 		else if (select == qa[questid][1] || select[0] == rightans) {
 			cout << "Ответ верный!" << "\n\n";
 			nextQuest = true;
@@ -250,12 +252,14 @@ int randquest() {
 	return index;
 }
 
+//обнуление использованных вопросов
 void resarr() {
 	for (int i = 0; i < 15; i++) {
 		usedQuest[i] = 20;
 	}
 }
 
+//вывод вариантов ответа
 char ansout(int questid) {
 	int index = randnum(22);
 	char rightans;
@@ -275,6 +279,7 @@ char ansout(int questid) {
 	return rightans;
 }
 
+//вывод вариантов ответа для 50х50
 char ansoutpp(int questid) {
 	char rightans;
 	if (randnum(5) == 1) {
