@@ -6,6 +6,7 @@
 
 using namespace std;
 
+int ppused = 0;
 int questQty = 5; //кол-во вопросов
 int missQty = 3; //кол-во ошибок
 string _;
@@ -32,7 +33,7 @@ string qa[15][5] = {
 	{"Вопрос?", "Ответ", "!Вопрос", "ОК", "Ладно"}
 };
 
-string seed[]{
+string seed[] {
 	"1234",
 	"1243",
 	"1342",
@@ -57,7 +58,7 @@ string seed[]{
 	"4312"
 };
 
-int usedQuest[15]{};
+int usedQuest[15] {};
 
 int menu();
 int settings();
@@ -67,10 +68,10 @@ int randnum(int, int);
 int randquest();
 void resarr();
 char ansout(int);
+char ansoutpp(int);
 
 int main() {
 	//setlocale(0, "");
-	//system("chcp 65001");
 	system("chcp 1251");
 	resarr();
 	switch (menu())
@@ -98,6 +99,7 @@ int menu() {
 		<< "2 - Настройки\n"
 		<< "3 - Правила\n"
 		<< "4 - Выход\n"
+		<< "Режим при входе в правила\n"
 		<< "Выбирете в поле пункт из меню: ";
 	int select; cin >> select;
 	switch (select)
@@ -116,7 +118,8 @@ int menu() {
 			<< "[2] В настройках можно выбрать кол-во вопросов и попыток ответа на них;\n"
 			<< "[3] Время ответа на вопрос не ограничено;\n"
 			<< "[4] В викторине содержится всего 15 вопросов, выпадение вопроса определяет ваше везение;\n"
-			<< "[5] Это просто!\n\n"
+			<< "[5] В игре присутствует помощь искуственного интелекта (50/50), чтобы её активировать введите в поле команду: 50x50;"
+			<< "[6] Выиграть просто!\n\n"
 			<< "Введите в поле любой символ для выхода: ";
 		cin >> _;
 		return menu();
@@ -180,13 +183,20 @@ void game() {
 	while (turns <= questQty) {
 		if (nextQuest) {
 			questid = randquest();
+			nextQuest = false;
 		}
-
+		
 		//вывод вопроса
 		cout << qa[questid][0] << "\n\n";
 
 		//вывод вариантов ответа
-		rightans = ansout(questid);
+		if (ppused == 1) {
+			rightans = ansoutpp(questid);
+			ppused++;
+		}
+		else {
+			rightans = ansout(questid);
+		}
 		cout << "\n" << "Ожидаю ответ: ";
 
 		//Ввод ответа 
@@ -194,8 +204,13 @@ void game() {
 		clear;
 
 		//Проверка ответа
-		//Доработать <<===========================================================#
-		if (select == qa[questid][1] || select[0] == rightans) {
+		if (ppused == 0 && (select == "50x50" || select == "50х50") ) {
+			ppused++;
+		}
+		else if (ppused != 0 && (select == "50x50" || select == "50х50")) {
+			cout << "подсказка уже использована\n";
+		}
+		else if (select == qa[questid][1] || select[0] == rightans) {
 			cout << "Ответ верный!" << "\n\n";
 			nextQuest = true;
 			turns++;
@@ -260,27 +275,17 @@ char ansout(int questid) {
 	return rightans;
 }
 
-/*
-cout << "ng";
-
-clear;
-
-int q = randnum(15);
-
-cout << qa[q][0] << "\n";
-
-for (int i = 1; i < 5; i++) {
-	cout << i << " - " << qa[q][i] << "\n";
+char ansoutpp(int questid) {
+	char rightans;
+	if (randnum(5) == 1) {
+		rightans = '1';
+		cout  << "1 - " << qa[questid][1] << "\n";
+		cout << "2 - " << qa[questid][randnum(4) + 2] << "\n";
+	}
+	else {
+		rightans = '2';
+		cout << "1 - " << qa[questid][randnum(4) + 2] << "\n";
+		cout << "2 - " << qa[questid][1] << "\n";
+	}
+	return rightans;
 }
-
-cout << ": ";
-
-string select; cin >> select;
-
-if (select == qa[q][1]) { cout << "+"; }
-else { cout << "-"; }
-
-#--------------------------------------------
-
-printf("%i - %s\n",i, qa[questid][i]);
-*/
